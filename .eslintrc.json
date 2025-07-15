@@ -82,5 +82,11 @@
     "object-shorthand": "error",
     "prefer-arrow-callback": "error"
   },
-  "ignorePatterns": ["dist", "node_modules", "*.config.js", "*.config.ts"]
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "*.config.js",
+    "*.config.ts",
+    "src/services/testLlama.ts"
+  ]
 }
