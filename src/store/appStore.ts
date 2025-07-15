@@ -17,6 +17,7 @@ export const useAppStore = create<AppState>()(
     {
       name: 'app-store',
       storage: createJSONStorage(() => localStorage),
+      partialize: () => ({ currentScreen: 'main' }), // Always start with main screen
     }
   )
 );
