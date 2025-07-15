@@ -37,3 +37,6 @@ sw.js.map
 workbox-*.js
 workbox-*.js.map
 .vercel
+
+*storybook.log
+storybook-static
