@@ -1,6 +1,7 @@
 # Step 2: Settings Screen Implementation (TAIMAGOSHA)
 
 ## 🖼️ Asset Checklist (Figma Reference)
+
 - Review the Figma design for all required images/icons.
 - Required assets (from Figma):
   - Social icons (Telegram, X, WhatsApp) as PNG/SVG
@@ -12,11 +13,13 @@
 ---
 
 ## 🏗️ Goal
+
 Implement the TAIMAGOSHA settings screen with drag-and-drop character upload, MCP toggles, and social placeholders, using feature-based structure and on-demand asset support.
 
 ---
 
 ### ✅ Prerequisites
+
 - [x] Main screen working
 - [x] Zustand + localStorage setup
 - [x] Image assets available in `/public/assets/`
@@ -24,6 +27,7 @@ Implement the TAIMAGOSHA settings screen with drag-and-drop character upload, MC
 ---
 
 ### 🛠️ Tech Stack
+
 - React + TypeScript
 - Tailwind CSS
 - Vite
@@ -34,6 +38,7 @@ Implement the TAIMAGOSHA settings screen with drag-and-drop character upload, MC
 ---
 
 ### 🗂️ Feature-Based Structure Example
+
 ```
 src/
   features/
@@ -54,6 +59,7 @@ src/
 ---
 
 ### 🧩 Implementation Steps
+
 1. **Navigation & State**
    - Use Zustand for global state: `uploadedCharacter`, `mcpToggles` (in `features/settings/settingsSlice.ts`).
    - Conditional render for main/settings screen.
@@ -97,6 +103,7 @@ src/
 ---
 
 ### ⚡ Tips
+
 - Use Framer Motion for tooltips.
 - Predefine MCPs for easier scaling.
 - Add demo/test after each step in stream.

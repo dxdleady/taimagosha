@@ -1,5 +1,5 @@
 // LLaMA Service with Context7 integration
-import type { Character } from '../types/character'
+import type { Character } from '../types/character';
 
 export interface LLaMAResponse {
   text: string;
@@ -33,16 +33,19 @@ export class LLaMAService {
         method: 'POST',
         headers,
         body: JSON.stringify({
-          model: import.meta.env.VITE_LLAMA_ENDPOINT || 'deepseek/deepseek-chat-v3-0324:free',
+          model:
+            import.meta.env.VITE_LLAMA_ENDPOINT ||
+            'deepseek/deepseek-chat-v3-0324:free',
           messages: [
             {
               role: 'system',
-              content: 'You are TAIMAGOSHA, a helpful AI assistant with a duck-like personality. Be friendly, concise, and helpful.'
+              content:
+                'You are TAIMAGOSHA, a helpful AI assistant with a duck-like personality. Be friendly, concise, and helpful.',
             },
             {
               role: 'user',
-              content: prompt
-            }
+              content: prompt,
+            },
           ],
           max_tokens: 150,
           temperature: 0.7,
@@ -51,7 +54,9 @@ export class LLaMAService {
 
       if (!response.ok) {
         const errorData = await response.text();
-        throw new Error(`HTTP error! status: ${response.status}, message: ${errorData}`);
+        throw new Error(
+          `HTTP error! status: ${response.status}, message: ${errorData}`
+        );
       }
 
       const result = await response.json();
@@ -65,11 +70,14 @@ export class LLaMAService {
   // Context7 integration for MCP (Model Context Protocol) with Deep Memory
   async fetchWithContext7(prompt: string, context?: any): Promise<string> {
     try {
-      const { deepMemoryEnabled, maxMemoryMessages } = context?.settings || { deepMemoryEnabled: true, maxMemoryMessages: 10 };
+      const { deepMemoryEnabled, maxMemoryMessages } = context?.settings || {
+        deepMemoryEnabled: true,
+        maxMemoryMessages: 10,
+      };
       const character: Character | null = context?.character || null;
-      
+
       let systemMessage: string;
-      
+
       if (character) {
         // Use character configuration
         if (deepMemoryEnabled) {
@@ -96,7 +104,7 @@ MCP Enabled: ${character.mcp.enabled}`;
         }
       } else {
         // Fallback to hardcoded TAIMAGOSHA
-        systemMessage = deepMemoryEnabled 
+        systemMessage = deepMemoryEnabled
           ? `You are TAIMAGOSHA, a helpful AI assistant with a duck-like personality. Be friendly, concise, and helpful.
 
 DEEP MEMORY ENABLED: Remember details from our conversation history. Build upon previous topics and maintain context.
@@ -119,11 +127,12 @@ MCP Enabled: true`;
 
       // Add conversation history if available and deep memory is enabled
       if (context?.conversation_history && deepMemoryEnabled) {
-        const historyToUse = context.conversation_history.slice(-maxMemoryMessages);
+        const historyToUse =
+          context.conversation_history.slice(-maxMemoryMessages);
         historyToUse.forEach((msg: any) => {
           messages.push({
             role: msg.sender === 'user' ? 'user' : 'assistant',
-            content: msg.text
+            content: msg.text,
           });
         });
       } else if (context?.conversation_history && !deepMemoryEnabled) {
@@ -132,7 +141,7 @@ MCP Enabled: true`;
         recentHistory.forEach((msg: any) => {
           messages.push({
             role: msg.sender === 'user' ? 'user' : 'assistant',
-            content: msg.text
+            content: msg.text,
           });
         });
       }
@@ -140,7 +149,7 @@ MCP Enabled: true`;
       // Add current user message
       messages.push({
         role: 'user',
-        content: prompt
+        content: prompt,
       });
 
       const response = await fetch(this.endpoint, {
@@ -149,10 +158,12 @@ MCP Enabled: true`;
           'Content-Type': 'application/json',
           'HTTP-Referer': 'https://taimagosha.vercel.app',
           'X-Title': 'TAIMAGOSHA',
-          ...(this.apiKey && { 'Authorization': `Bearer ${this.apiKey}` }),
+          ...(this.apiKey && { Authorization: `Bearer ${this.apiKey}` }),
         },
         body: JSON.stringify({
-          model: import.meta.env.VITE_LLAMA_ENDPOINT || 'deepseek/deepseek-chat-v3-0324:free',
+          model:
+            import.meta.env.VITE_LLAMA_ENDPOINT ||
+            'deepseek/deepseek-chat-v3-0324:free',
           messages,
           max_tokens: 150,
           temperature: 0.7,
@@ -161,7 +172,9 @@ MCP Enabled: true`;
 
       if (!response.ok) {
         const errorData = await response.text();
-        throw new Error(`Context7 API error! status: ${response.status}, message: ${errorData}`);
+        throw new Error(
+          `Context7 API error! status: ${response.status}, message: ${errorData}`
+        );
       }
 
       const result = await response.json();

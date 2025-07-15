@@ -1,6 +1,7 @@
 # Step 1: Main Screen Implementation (TAIMAGOSHA)
 
 ## 🖼️ Asset Checklist (Figma Reference)
+
 - Review the Figma design for all required images/animations.
 - Required assets (from Figma):
   - `heart.gif` or `heart.png` (animated heart)
@@ -13,11 +14,13 @@
 ---
 
 ## 🎯 Goal
+
 Implement the TAIMAGOSHA main (chatbot) screen as a mobile-first PWA, using a feature-based structure, supporting on-demand PNG/GIF asset upload, and deploying to Vercel.
 
 ---
 
 ### ✅ Prerequisites
+
 - [x] Figma prototype reviewed
 - [x] Vercel deployment working
 - [x] LLaMA endpoint tested (replace placeholder in code)
@@ -45,6 +48,7 @@ Implement the TAIMAGOSHA main (chatbot) screen as a mobile-first PWA, using a fe
 - **Best Practices (Context7)**: _(Add link or summary when Context7 docs are available)_ — Use Context7 for LLM/MCP integration and workflow best practices.
 
 #### 📝 Notes
+
 - Always check the official docs for onboarding, troubleshooting, and best practices.
 - Each setup step in this file references the relevant documentation above.
 - For Storybook, see [Naming & Hierarchy](https://storybook.js.org/docs/writing-stories/naming-components-and-hierarchy) and [Structuring](https://storybook.js.org/blog/structuring-your-storybook/) for scalable component/story organization.
@@ -56,6 +60,7 @@ Implement the TAIMAGOSHA main (chatbot) screen as a mobile-first PWA, using a fe
 ---
 
 ### 🗂️ Feature-Based Structure Example
+
 ```
 src/
   features/
@@ -76,6 +81,7 @@ public/
 ---
 
 ### 🖼️ UI Elements
+
 1. **Heart & Duck GIFs/PNGs** (static, loaded from `/public/assets/`)
 2. **Info Pills** (Character file, Active MCPs, Socials)
    - Non-interactive, with tooltip on tap
@@ -87,22 +93,24 @@ public/
 ---
 
 ### 💬 LLaMA Integration
+
 ```ts
 async function fetchLLMResponse(prompt: string): Promise<string> {
-  const response = await fetch("https://api.llama.free/your-endpoint", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+  const response = await fetch('https://api.llama.free/your-endpoint', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ prompt }),
   });
-  if (!response.ok) return "LLaMA unavailable. Try again later.";
+  if (!response.ok) return 'LLaMA unavailable. Try again later.';
   const result = await response.json();
-  return result?.text || "No response.";
+  return result?.text || 'No response.';
 }
 ```
 
 ---
 
 ### 🧩 Implementation Steps
+
 1. **Set up Zustand store** for chat messages (`features/chat/chatSlice.ts`).
 2. **Create ChatWindow** with input, message list, loading, error (`features/chat/ChatWindow.tsx`).
 3. **Add InfoPill** components for Character, MCP, Socials (`features/infoPills/InfoPill.tsx`).
@@ -114,6 +122,7 @@ async function fetchLLMResponse(prompt: string): Promise<string> {
 ---
 
 ### 🧪 Quick Test
+
 - [ ] Run `npm run dev` and verify chat flow.
 - [ ] Check GIFs/PNGs and tooltips on mobile.
 - [ ] Deploy to Vercel and test PWA install.
@@ -121,6 +130,7 @@ async function fetchLLMResponse(prompt: string): Promise<string> {
 ---
 
 ### ⚡ Tips
+
 - Use `react-tooltip` or a custom tooltip for mobile.
 - Preload GIFs/PNGs for smooth animation.
 - Use Tailwind for quick spacing/alignment.

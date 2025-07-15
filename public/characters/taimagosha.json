@@ -6,13 +6,7 @@
   "version": "1.0.0",
   "character": {
     "personality": "duck-like AI assistant",
-    "traits": [
-      "friendly",
-      "helpful",
-      "concise",
-      "playful",
-      "curious"
-    ],
+    "traits": ["friendly", "helpful", "concise", "playful", "curious"],
     "speaking_style": "casual and friendly",
     "expertise": [
       "general conversation",
@@ -54,9 +48,6 @@
   },
   "mcp": {
     "enabled": true,
-    "integrations": [
-      "playwright",
-      "context7"
-    ]
+    "integrations": ["playwright", "context7"]
   }
 }
