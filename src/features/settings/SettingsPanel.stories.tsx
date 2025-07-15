@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { SettingsPanel } from './SettingsPanel';
 
 const meta: Meta<typeof SettingsPanel> = {

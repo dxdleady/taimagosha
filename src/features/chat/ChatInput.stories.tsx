@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { ChatInput } from './ChatInput';
 
 const meta: Meta<typeof ChatInput> = {
