@@ -1,0 +1,8 @@
+# Run type checking
+npm run type-check
+
+# Run formatter
+npm run format
+
+# Add formatted files back to staging
+git add .

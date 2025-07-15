@@ -69,9 +69,12 @@
         }
       }
     ],
+    "import/default": "off",
+    "import/no-named-as-default-member": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/no-autofocus": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "no-console": "warn",
     "no-debugger": "error",
     "prefer-const": "error",

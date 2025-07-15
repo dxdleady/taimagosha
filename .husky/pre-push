@@ -1,0 +1,5 @@
+# Run build to ensure everything compiles correctly
+npm run build
+
+# Run final lint check
+npm run lint
