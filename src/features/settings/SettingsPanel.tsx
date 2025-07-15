@@ -6,9 +6,7 @@ export const SettingsPanel: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { 
     deepMemoryEnabled, 
-    maxMemoryMessages, 
-    toggleDeepMemory, 
-    setMaxMemoryMessages 
+    maxMemoryMessages
   } = useSettingsStore()
   
   const { 
